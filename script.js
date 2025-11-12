@@ -18,11 +18,29 @@ console.log("My grade average is " + myAverage);
 
 
 function validNumber(num) {
-    if (isNaN(num)){
-        throw new Error("Enter a valid Number");
+    try{
+        if (isNaN(num)) {
+            throw new TypeError('Enter a number');
+        }
+        if (num < 0 || num > 100){
+            throw new RangeError('Number needs to be between 0 and 100');
+        }
+        console.log("Your Number is " + num);
+    } catch (error) {
+        if (error instanceof TypeError) {
+        console.log("An Error Occured: enter a number.");
+        
+    } else if (error instanceof RangeError) {
+        console.log("Your number is not in the defined range")
     } else {
-        console.log("valid!");
+        throw Error;
+    }
     }
 }
 
+
 validNumber(NaN);
+validNumber(-2);
+validNumber(101);
+validNumber(55);
+validNumber("Hello");
